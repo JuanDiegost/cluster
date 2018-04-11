@@ -1,6 +1,9 @@
 #include "socketserver.h"
+#include <iostream>
+using namespace std;
 
 SocketServer::SocketServer() {
+
 }
 
 bool SocketServer::crear_Socket() {
