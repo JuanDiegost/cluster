@@ -50,22 +50,46 @@ void * SocketServer::controladorCliente(void *obj) {
     dataSocket *data = (dataSocket*) obj;
     while (true) {
 #define BLOCK 1024
-        int size, ofs, nbytes = 0, block = BLOCK;
-        char pbuf[BLOCK];
-        std::string path = "C:/Users/JuanDiegost/Documents/Distribuidos/cluster/Server/test.png";
-        std::ofstream os(path, std::ios::binary);
-        recv(data->descriptor, reinterpret_cast<char*> (&size), sizeof size, 0);
-        for (ofs = 0; block == BLOCK; ofs += BLOCK) {
-            if (size - ofs < BLOCK) block = size - ofs;
-            nbytes += recv(data->descriptor, pbuf, block, 0);
-            os.write(pbuf, block);
+        string mensaje;
+        char buffer[256] = {0};
+        while (1) {
+            int bytes = recv(data->descriptor, (void *) &buffer, 256, 0);
+            if (bytes <= 0) {
+                close(data->descriptor);
+                pthread_exit(NULL);
+            }
+            if (bytes < 256) {
+                break;
+            }
         }
-        os.close();
-        close(data->descriptor);
-        pthread_exit(NULL);
+        cout << mensaje << endl;
+        switch (buffer[0]) {
+            case '1':
+                send(data->descriptor, "accepted", sizeof "accepted", 0);
+                int size, ofs, nbytes = 0, block = BLOCK;
+                char pbuf[BLOCK];
+                std::string path = "/root/Escritorio/Server/test.png";
+                std::ofstream os(path, std::ios::binary);
+                cout << "recibir" << endl;
+                recv(data->descriptor, reinterpret_cast<char*> (&size), sizeof size, 0);
+                cout << "DEscriptor" << endl;
+
+                for (ofs = 0; block == BLOCK; ofs += BLOCK) {
+                    if (size - ofs < BLOCK) block = size - ofs;
+                    nbytes += recv(data->descriptor, pbuf, block, 0);
+                    os.write(pbuf, block);
+                }
+                cout << "salie" << endl;
+
+                os.close();
+                close(data->descriptor);
+                pthread_exit(NULL);
+                break;
+        }
+
+
     }
 }
-
 
 void SocketServer::setMensaje(const char *msn) {
     for (unsigned int i = 0; i < clientes.size(); i++) {
