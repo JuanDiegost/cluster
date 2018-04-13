@@ -1,19 +1,19 @@
-/*
+/* 
  * File:   main.cpp
  * Author: JuanDiegost
- *
+ * 
  * Created on 8 de abril de 2018, 04:53 PM
  */
 
 #include "socketserver.h"
-using namespace std;
 
 
-void * serverRun(void * serve)
+SocketServer *server;
+
+void * serverRun(void *)
 {
-    SocketServer * serv = (SocketServer *) serve;
     try{
-        serv->run();
+        server->run();
     }catch(string ex)
     {
         cout << ex << endl;
@@ -24,15 +24,17 @@ void * serverRun(void * serve)
 
 int main(int argc, char *argv[])
 {
-   SocketServer *server = new SocketServer();
+   server = new SocketServer;
    pthread_t hiloServer;
-   pthread_create(&hiloServer,0,serverRun,(void*)server);
+   pthread_create(&hiloServer,0,serverRun,NULL);
    pthread_detach(hiloServer);
+
    while (1) {
        string mensaje;
        cin >> mensaje;
        server->setMensaje(mensaje.c_str());
    }
+
    delete server;
    return 0;
 }

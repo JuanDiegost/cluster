@@ -1,9 +1,8 @@
 #include "socketserver.h"
-#include <iostream>
-using namespace std;
+
+#define LENGTH 1024000
 
 SocketServer::SocketServer() {
-
 }
 
 bool SocketServer::crear_Socket() {
@@ -20,7 +19,6 @@ bool SocketServer::crear_Socket() {
 bool SocketServer::ligar_kernel() {
     if ((bind(descriptor, (sockaddr *) & info, (socklen_t)sizeof (info))) < 0)
         return false;
-
     listen(descriptor, 5);
     return true;
 }
@@ -30,7 +28,6 @@ void SocketServer::run() {
         throw string("Error al crear el socket");
     if (!ligar_kernel())
         throw string("Error al  ligar kernel");
-
     while (true) {
         cout << "Esperando nuevo cliente" << endl;
         dataSocket data;
@@ -52,24 +49,23 @@ void SocketServer::run() {
 void * SocketServer::controladorCliente(void *obj) {
     dataSocket *data = (dataSocket*) obj;
     while (true) {
-        string mensaje;
-        while (1) {
-            char buffer[10] = {0};
-            int bytes = recv(data->descriptor, buffer, 10, 0);
-            mensaje.append(buffer, bytes);
-            if (bytes <= 0) {
-                close(data->descriptor);
-                pthread_exit(NULL);
-            }
-            if (bytes < 10)
-                break;
+#define BLOCK 1024
+        int size, ofs, nbytes = 0, block = BLOCK;
+        char pbuf[BLOCK];
+        std::string path = "C:/Users/JuanDiegost/Documents/Distribuidos/cluster/Server/test.png";
+        std::ofstream os(path, std::ios::binary);
+        recv(data->descriptor, reinterpret_cast<char*> (&size), sizeof size, 0);
+        for (ofs = 0; block == BLOCK; ofs += BLOCK) {
+            if (size - ofs < BLOCK) block = size - ofs;
+            nbytes += recv(data->descriptor, pbuf, block, 0);
+            os.write(pbuf, block);
         }
-        cout << mensaje << endl;
+        os.close();
+        close(data->descriptor);
+        pthread_exit(NULL);
     }
-
-    close(data->descriptor);
-    pthread_exit(NULL);
 }
+
 
 void SocketServer::setMensaje(const char *msn) {
     for (unsigned int i = 0; i < clientes.size(); i++) {

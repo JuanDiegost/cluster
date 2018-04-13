@@ -19,12 +19,12 @@
 
 using namespace std;
 
-class SocketCliente
-{
+class SocketCliente {
 public:
     SocketCliente();
     bool connectar();
-    void setMensaje(const char *msn);
+    void setMensaje(const char *msn, int fs, long size);
+    int getSocket();
 private:
     int descriptor;
     sockaddr_in info;

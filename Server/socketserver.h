@@ -9,17 +9,17 @@
 #include <pthread.h>
 #include <vector>
 #include <unistd.h>
+#include <fstream>
 
 
 using namespace std;
 
-struct dataSocket{
+struct dataSocket {
     int descriptor;
     sockaddr_in info;
 };
 
-class SocketServer
-{
+class SocketServer {
 public:
     SocketServer();
     void run();
@@ -27,6 +27,8 @@ public:
 private:
     int descriptor;
     sockaddr_in info;
+    int nsockfd;
+    int sin_size;
     bool crear_Socket();
     bool ligar_kernel();
     static void * controladorCliente(void *obj);
