@@ -13,6 +13,7 @@
 #include "fstream"
 #include <unistd.h>
 #include <iostream>
+#include <string>
 #include <cstring>
 #include <fstream>
 #include <string.h>
@@ -53,7 +54,6 @@ void sendFile(const char *path) {
         nbytes += send(conexion->getSocket(), pbuf, block, 0);
     }
     is.close();
-    cout<<"salio";
 }
 
 int main() {
@@ -67,7 +67,7 @@ int main() {
     char tecla;
 
     do {
-        system("clear");
+        system("cls");
         cin.clear();
         cout << "Opciones" << endl;
         cout << "-----------" << endl << endl;
@@ -75,10 +75,8 @@ int main() {
         cout << "\t2 .- Solicitar listado de recursos por maquina" << endl;
         cout << "\t0 .- Salir" << endl << endl;
         cout << "Elije una opcion: ";
-        fflush(stdin);
         cin >> tecla;
-        string path = "/home/srfeudal/Documentos/c++_projects/cluster-master/Client/41.png";
-        string mensaje = "";
+        string path = "C:/Users/JuanDiegost/Documents/Distribuidos/cluster/Cliente/41.png";
         //tecla = '1';
         cout << "Path: ";
         switch (tecla) {
@@ -88,30 +86,8 @@ int main() {
                 //cin >> ruta;
                 //leer("2.jpg");
                 cout << "send: ";
-                char bufferAction[1];
-                bufferAction[0] = '1';  
-                send(conexion->getSocket(), (void *) &bufferAction,  sizeof bufferAction, 0);//envia mensaje de peticion enviar archivo
-                mensaje = "";
-                while (1) {
-                    char buffer[256];
-                    int bytes;
-                    bytes = recv(conexion->getSocket(), buffer, 256, 0);
-                    mensaje.append(buffer, bytes);
-                    if (bytes <= 0) {
-                        close(conexion->getSocket());
-                        pthread_exit(NULL);
-                    }
-                    if (bytes < 256) {
-                        break;
-                    }
-                }
-                cout << mensaje << endl;
-                mensaje = "";   
-                
                 sendFile(path.data());
-                
                 cout << "sender: ";
-                
                 break;
             case '2':
                 system("cls");
@@ -126,6 +102,12 @@ int main() {
                 break;
         }
     } while (!salir);
+
+
+    /* while (1) {
+         cin >> mensaje;
+         conexion->setMensaje(mensaje.c_str());
+     }*/
 
     delete conexion;
     return 0;

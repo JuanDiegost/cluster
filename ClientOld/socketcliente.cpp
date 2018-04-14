@@ -15,9 +15,9 @@ bool SocketCliente::connectar() {
     if (descriptor < 0)
         return false;
     info.sin_family = AF_INET;
-    info.sin_addr.s_addr = inet_addr("192.168.43.26");
+    info.sin_addr.s_addr = inet_addr("127.0.0.1");
     info.sin_port = ntohs(4050);
-    inet_pton(AF_INET, "192.168.43.26", &info.sin_addr);
+    inet_pton(AF_INET, "127.0.0.1", &info.sin_addr);
     bzero(&(info.sin_zero), 8);
 
     if ((connect(descriptor, (sockaddr*) & info, (socklen_t)sizeof (info))) < 0)
