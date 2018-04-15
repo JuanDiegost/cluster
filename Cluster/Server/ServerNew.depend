@@ -1,0 +1,47 @@
+# depslib dependency file v1.0
+1514140574 source:c:\users\srfeu\onedrive\semestre 7\distribuidos\servernew\main.cpp
+	<iostream>
+
+1514140574 
+
+1523745472 source:/home/srfeudal/Documentos/Cluster/Server/ClientInfo.cpp
+	"ClientInfo.h"
+
+1523745440 /home/srfeudal/Documentos/Cluster/Server/ClientInfo.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+
+1523753326 source:/home/srfeudal/Documentos/Cluster/Server/main.cpp
+	<iostream>
+	"Server.h"
+
+1523756680 /home/srfeudal/Documentos/Cluster/Server/Server.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	"ClientInfo.h"
+
+1523753194 source:/home/srfeudal/Documentos/Cluster/Server/Server.cpp
+	"Server.h"
+
