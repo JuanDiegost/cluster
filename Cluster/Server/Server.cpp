@@ -7,7 +7,8 @@ struct parameter {
 
 Server::Server(){
     this->port = 9000;
-}
+
+    }
 
 Server::Server(int port){
     this->port = port;
@@ -51,7 +52,14 @@ void * receiveClient(void* infoClient){
 //                }
 
                 //una vez se haya decidido a quien enviar los datos se envia la señal de que puede enviar la data
-                send(client->getClientDescriptor(),(void *)"Envieme la data",sizeof("Envieme la data"),0);
+                send(client->getClientDescriptor(),(void *)"1",sizeof("Envieme la data"),0);
+                //Recibe el nombre del archivos
+                i= recv(client->getClientDescriptor(),(void *)&clientMessage,128,0);
+                cout<<clientMessage<<endl;
+                string file ="/root/Escritorio/Cluster/Server/";
+                file+=clientMessage;
+
+                Server::receiveFile((void *)infoClient,file.c_str());
                 //se deve recibir el mensaje y hacer lo de enviar el archivo a la maquina que se debe guardar
             }else if(strcmp(clientMessage,"2") == 0){//si lega 2 es para que se agregue a la lista de clientes pero a ese cliente se le seteara el modo para que sea maquina de almacenamiento
                 send(client->getClientDescriptor(),(void *)"Maquina de almacenamiento aceptada",sizeof("Maquina de almacenamiento aceptada"),0);
@@ -65,6 +73,26 @@ void * receiveClient(void* infoClient){
             close(client->getClientDescriptor());
         }
     }
+}
+
+inline void  *Server::receiveFile(void* infoClient, const char *path) {
+	#define BLOCK 1024
+    ClientInfo * client = /*pe->*/(ClientInfo*)infoClient;
+	int size, ofs, nbytes = 0, block = BLOCK;
+	char pbuf[BLOCK];
+	std::ofstream os(path, std::ios::binary);
+	recv(client->getClientDescriptor(), reinterpret_cast<char*>(&size), sizeof size, 0);
+	cout<<"recibiendo"<<endl;
+	for(ofs = 0; block == BLOCK; ofs += BLOCK) {
+		if(size - ofs < BLOCK) block = size - ofs;
+		nbytes += recv(client->getClientDescriptor(), pbuf, block, 0);
+		os.write(pbuf, block);
+		cout<<"block= "<<block<<endl;
+	}
+    cout<<"completado"<<endl;
+	os.close();
+    cout<<"cerrado"<<endl;
+
 }
 
 void Server::acceptClients(){

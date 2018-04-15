@@ -2,7 +2,7 @@
 1514140574 source:e:\cesar\c++ proyects\client\main.cpp
 	<iostream>
 
-1514140574 
+1523745440 
 
 1523754344 source:/home/srfeudal/Documentos/Cluster/Client/Client.cpp
 	"Client.h"
@@ -27,6 +27,8 @@
 1523745472 source:/home/srfeudal/Documentos/Cluster/Client/ClientInfo.cpp
 	"ClientInfo.h"
 
+1523745472 o.h"
+
 1523745440 /home/srfeudal/Documentos/Cluster/Client/ClientInfo.h
 	<sys/socket.h>
 	<netinet/in.h>
@@ -44,5 +46,30 @@
 
 1523753356 source:/home/srfeudal/Documentos/Cluster/Client/main.cpp
 	<iostream>
+	"Client.h"
+
+1523743738 source:/root/Escritorio/Cluster/Client/main.cpp
+	<iostream>
+	"Client.h"
+
+1523816060 /root/Escritorio/Cluster/Client/Client.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<netdb.h>
+	<string.h>
+	<iostream>
+	<time.h>
+	<cstdio>
+	<stdlib.h>
+	<pthread.h>
+	<sstream>
+	<vector>
+	<fstream>
+
+1523817610 source:/root/Escritorio/Cluster/Client/Client.cpp
 	"Client.h"
 

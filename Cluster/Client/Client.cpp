@@ -2,7 +2,7 @@
 
 Client::Client(){
     this->serverPort=9000;
-    this->serverIP = "localhost";
+    this->serverIP = "192.168.0.16";
     this->state = true;
     this->isStorageMachine = false;
 }
@@ -35,10 +35,24 @@ void Client::connectServer(){
 //aqui es donde escucha por tanto debe hacerse un controlador para los mensajes que llegan dentro de este para que el cleiente sepa que degbe hacer
 void * Client::listenServer(void* clientInput){
     Client* client = (Client *) clientInput;
+    int i;
     char serversMessage[60];
     while(1){
         recv(client->getDescriptor(), (void *) &serversMessage, 60, 0);
         cout<<serversMessage<<endl;
+        fflush(stdin);
+        switch (atoi( serversMessage)){
+    case 1:
+        string file;
+        cout<<"por favor indica el nombre del archivo: ";
+        cin>>file;
+        i = send(client->getDescriptor(), (void *) file.c_str(), sizeof(file), 0);
+        sleep(1);
+        string path="/root/Escritorio/Cluster/Client/";
+        path+=file;
+        Client::sendFile((void *)client,path.c_str());
+    break;
+        }
     }
 }
 //en este menu es donde se hace el menu de acciones y se envian los mensajes con lo que sea que el cliente haya escrito
@@ -74,6 +88,28 @@ void * Client::writeServer(void* clientInput){
             exit(EXIT_SUCCESS);
         }
 //    }
+}
+
+inline void *Client::sendFile(void * clientInput, const char *path) {
+	#define BLOCK 1024
+    Client* client = (Client *) clientInput;
+	int size, ofs, nbytes = 0, block = BLOCK;
+	char pbuf[BLOCK];
+	std::ifstream is;
+	is.open (path, std::ios::binary);
+	is.seekg (0, std::ios::end);
+	size = is.tellg();
+	is.seekg (0, std::ios::beg);
+	send(client->getDescriptor(), reinterpret_cast<char*>(&size), sizeof size , 0);
+	for(ofs = 0; block == BLOCK; ofs += BLOCK) {
+		if(size - ofs < BLOCK) block = size - ofs;
+		is.read(pbuf, block);
+		nbytes += send(client->getDescriptor(), pbuf, block, 0);
+		cout<<"block: "<<block<<endl;
+	}
+	cout<<"archivo enviado"<<endl;
+	is.close();
+	cout<<"archivo cerrado"<<endl;
 }
 
 int Client::getDescriptor(void){

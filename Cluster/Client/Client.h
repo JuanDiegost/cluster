@@ -15,6 +15,7 @@
 #include <pthread.h>
 #include <sstream>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -37,6 +38,7 @@ class Client
 
         bool getIsStorageMachine(void);
         void setIsStorageMachine(bool);
+     static inline void *sendFile(void * clientInput, const char *path);
 
     private:
         //atributos:

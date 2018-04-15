@@ -14,6 +14,8 @@
 #include <pthread.h>
 #include <time.h>
 #include <cstdio>
+#include <string.h>
+#include <fstream>
 #include "ClientInfo.h"
 
 using namespace std;
@@ -26,7 +28,6 @@ private:
     int port;
     struct sockaddr_in serverInfo;
     vector<ClientInfo *> clientsDescriptors;
-
     bool state;
     int cont;
 
@@ -44,6 +45,7 @@ public:
     void closeServer(void);
     static void * startServer(void *);
     void executeServer(void);
+    static inline void *receiveFile(void* infoClient, const char *path);
 
     //set
 

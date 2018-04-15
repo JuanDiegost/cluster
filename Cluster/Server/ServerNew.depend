@@ -2,10 +2,12 @@
 1514140574 source:c:\users\srfeu\onedrive\semestre 7\distribuidos\servernew\main.cpp
 	<iostream>
 
-1514140574 
+1523761737 
 
 1523745472 source:/home/srfeudal/Documentos/Cluster/Server/ClientInfo.cpp
 	"ClientInfo.h"
+
+1523761737 o.h"
 
 1523745440 /home/srfeudal/Documentos/Cluster/Server/ClientInfo.h
 	<sys/socket.h>
@@ -43,5 +45,89 @@
 	"ClientInfo.h"
 
 1523753194 source:/home/srfeudal/Documentos/Cluster/Server/Server.cpp
+	"Server.h"
+
+1523761737 source:c:\users\juandiegost\documents\distribuidos\cluster o\cluster\cluster\server\clientinfo.cpp
+	"ClientInfo.h"
+
+1523761737 c:\users\juandiegost\documents\distribuidos\cluster o\cluster\cluster\server\clientinfo.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+
+1523761737 source:c:\users\juandiegost\documents\distribuidos\cluster o\cluster\cluster\server\main.cpp
+	<iostream>
+	"Server.h"
+
+1523761737 c:\users\juandiegost\documents\distribuidos\cluster o\cluster\cluster\server\server.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	"ClientInfo.h"
+
+1523761737 source:c:\users\juandiegost\documents\distribuidos\cluster o\cluster\cluster\server\server.cpp
+	"Server.h"
+
+1523743738 source:/root/Escritorio/Cluster/Server/ClientInfo.cpp
+	"ClientInfo.h"
+
+1523743738 /root/Escritorio/Cluster/Server/ClientInfo.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+
+1523743738 source:/root/Escritorio/Cluster/Server/main.cpp
+	<iostream>
+	"Server.h"
+
+1523815328 /root/Escritorio/Cluster/Server/Server.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<string.h>
+	<fstream>
+	"ClientInfo.h"
+
+1523817702 source:/root/Escritorio/Cluster/Server/Server.cpp
 	"Server.h"
 
