@@ -101,7 +101,8 @@ inline void *Client::sendFile(void * clientInput, const char *path) {
 	size = is.tellg();
 	is.seekg (0, std::ios::beg);
 	send(client->getDescriptor(), reinterpret_cast<char*>(&size), sizeof size , 0);
-	for(ofs = 0; block == BLOCK; ofs += BLOCK) {
+	for(ofs = 0; block == BLOCK; ofs += BLOCK) {	
+		sleep(1);//Parece que el server no puede ller muy rapido la info q le llega y las partes que le faltan le llegan por soy un inutil... la linea del else con esto se soluciona pero es muy lento para enviar		
 		if(size - ofs < BLOCK) block = size - ofs;
 		is.read(pbuf, block);
 		nbytes += send(client->getDescriptor(), pbuf, block, 0);
