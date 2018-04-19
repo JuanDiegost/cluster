@@ -68,13 +68,22 @@ void * receiveClient(void* infoClient){
                         cout<<"enviado tam "<<j<<endl;
                         if(Server::clientsDescriptors.at(j)->getType()=="Almacenamiento"){
                         send(Server::clientsDescriptors.at(j)->getClientDescriptor(),(void *)"3",sizeof("3"),0);
+                        cout << "envie a"<<j<<endl;
+                        }
+                       //Cuando hay varai maquinas de almacenamiento el servidor no sigue con el for hata que
+                       //se desconecte la que envio por eso hay qu primero enviar a todas y luegorecibr a todas
+                    }
+                    cout<<"sali for"<<endl;
+                        for(int j = 0; j < Server::clientsDescriptors.size(); j++){
+                        cout<<"reci :"<<j<<endl;
+                        if(Server::clientsDescriptors.at(j)->getType()=="Almacenamiento"){
                         i= recv(Server::clientsDescriptors.at(j)->getClientDescriptor(),(void *)&clientMessage,128,0);
                         cout <<"El cliente con " << j <<" tiene :" << clientMessage<<endl;
                         }
-                       //Cuando hay varai maquinas de almacenamiento el servidor no sigue con el for hata que
-                       //se desconecte la que envio
+
                     }
                     cout<<"sali for"<<endl;
+
                 break;
             }
             case 4://conectar como cliente
