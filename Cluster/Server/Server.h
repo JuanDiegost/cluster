@@ -18,6 +18,7 @@
 #include <fstream>
 #include "ClientInfo.h"
 
+
 using namespace std;
 
 class Server{
@@ -27,11 +28,11 @@ private:
     int idBind;
     int port;
     struct sockaddr_in serverInfo;
-    vector<ClientInfo *> clientsDescriptors;
     bool state;
     int cont;
 
 public:
+   static vector<ClientInfo *> clientsDescriptors;
 
     //constructores
 

@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(){
-    int port = 5000;
+    int port = 7000;
     cout<<"Server"<<endl;
 //    cout<<"Puerto: "<<endl;
 //    cin>>port;

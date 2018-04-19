@@ -2,12 +2,12 @@
 1514140574 source:c:\users\srfeu\onedrive\semestre 7\distribuidos\servernew\main.cpp
 	<iostream>
 
-1523761737 
+1523743738 
 
 1523745472 source:/home/srfeudal/Documentos/Cluster/Server/ClientInfo.cpp
 	"ClientInfo.h"
 
-1523761737 o.h"
+1523815328 o.h"
 
 1523745440 /home/srfeudal/Documentos/Cluster/Server/ClientInfo.h
 	<sys/socket.h>
@@ -130,4 +130,88 @@
 
 1523817702 source:/root/Escritorio/Cluster/Server/Server.cpp
 	"Server.h"
+
+1523759528 source:/home/srfeudal/Documentos/Cluster/Server/ClientInfo.cpp
+	"ClientInfo.h"
+
+1523759528 /home/srfeudal/Documentos/Cluster/Server/ClientInfo.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+
+1523998232 source:/home/srfeudal/Documentos/Cluster/Server/main.cpp
+	<iostream>
+	"Server.h"
+
+1523871044 /home/srfeudal/Documentos/Cluster/Server/Server.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<string.h>
+	<fstream>
+	"ClientInfo.h"
+
+1523998337 source:/home/srfeudal/Documentos/Cluster/Server/Server.cpp
+	"Server.h"
+
+1524109006 source:/root/Escritorio/Cluster/Server/ClientInfo.cpp
+	"ClientInfo.h"
+
+1524108999 /root/Escritorio/Cluster/Server/ClientInfo.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<string.h>
+
+1524097038 source:/root/Escritorio/Cluster/Server/main.cpp
+	<iostream>
+	"Server.h"
+
+1524110799 /root/Escritorio/Cluster/Server/Server.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<string.h>
+	<fstream>
+	"ClientInfo.h"
 

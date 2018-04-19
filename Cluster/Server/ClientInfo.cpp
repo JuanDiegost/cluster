@@ -29,3 +29,11 @@ bool ClientInfo::getState(){
 void ClientInfo::setState(bool state){
     this->state = state;
 }
+
+std::string ClientInfo::getType(){
+    return this->type;
+}
+
+void ClientInfo::setType(std::string type){
+    this->type=type;
+}

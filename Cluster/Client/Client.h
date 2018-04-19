@@ -15,6 +15,7 @@
 #include <pthread.h>
 #include <sstream>
 #include <vector>
+#include <dirent.h>
 #include <fstream>
 
 using namespace std;
@@ -38,7 +39,10 @@ class Client
 
         bool getIsStorageMachine(void);
         void setIsStorageMachine(bool);
-     static inline void *sendFile(void * clientInput, const char *path);
+
+        static inline void *sendFile(void * clientInput, const char *path);
+        static int getFileSize(std::string);
+        static int getCurrentMachineStorage();
 
     private:
         //atributos:
@@ -48,6 +52,7 @@ class Client
         string serverIP;
         bool state;
         bool isStorageMachine;
+        bool listening;
 };
 
 #endif // CLIENT_H
