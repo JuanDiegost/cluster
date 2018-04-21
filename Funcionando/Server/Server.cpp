@@ -56,20 +56,30 @@ void * receiveClient(void* infoClient){
             break;
             case 2://si lega 2 es para que se agregue a la lista de clientes pero a ese cliente se le seteara el modo para que sea maquina de almacenamiento
                 send(client->getClientDescriptor(),(void *)"Maquina de almacenamiento aceptada",sizeof("Maquina de almacenamiento aceptada"),0);
-                client->setType("Almacenamiento");
+                i= recv(client->getClientDescriptor(),(void *)&clientMessage,128,0);
+                cout<<"Ingresa: "<<clientMessage<<endl;
+                if(atoi(clientMessage)==1){
+                    client->setType("Imagen");
+                    cout<<"Ingresa como imagen"<<endl;
+                }else{
+                    client->setType("Video");
+                }
                 Server::clientsDescriptors.push_back(client);
                 red=false;
             break;
             case 3:{
+                string nameFile;
                     cout<<"sending... ";
                     i= recv(client->getClientDescriptor(),(void *)&clientMessage,128,0);
                     string file ="/root/Escritorio/Server/data/";
                     file+=clientMessage;
+                    nameFile=clientMessage;
                     cout<<file<<endl;
                     Server::receiveFile((void *)infoClient,file.c_str());
                     cout<<"Numero de maquinas"<<Server::clientsDescriptors.size()<<endl;
+                    string typeFile="Imagen";
                     for(int j = 0; j < Server::clientsDescriptors.size(); j++){
-                        if(Server::clientsDescriptors.at(j)->getType()=="Almacenamiento"){
+                        if(Server::clientsDescriptors.at(j)->getType()==typeFile){
                             send(Server::clientsDescriptors.at(j)->getClientDescriptor(),(void *)"3",sizeof("3"),0);
 //                            cout << "envie a"<<j<<endl;
                         }
@@ -80,12 +90,15 @@ void * receiveClient(void* infoClient){
                     vector<int> sizes;
                     for(int j = 0; j < Server::clientsDescriptors.size(); j++){
 //                        cout<<"reci :"<<j<<endl;
-                        if(Server::clientsDescriptors.at(j)->getType()=="Almacenamiento"){
+                        if(Server::clientsDescriptors.at(j)->getType()==typeFile){
                             i= recv(Server::clientsDescriptors.at(j)->getClientDescriptor(),(void *)&clientMessage,128,0);
                             cout <<"El cliente " << j <<" tiene :" << clientMessage<<endl;
                             sizes.push_back(atoi(clientMessage));
+                        }else {
+                            sizes.push_back(214783545);
                         }
                     }
+
                     cout<<"salio del for";
                     int lowest = sizes.at(0);
                     int index = 0;
@@ -97,6 +110,7 @@ void * receiveClient(void* infoClient){
                     }
                     cout<<"hol1"<<lowest<<"salio"<<endl;
                     send(Server::clientsDescriptors.at(index)->getClientDescriptor(),(void *)"5",sizeof("5"),0);
+                    send(Server::clientsDescriptors.at(index)->getClientDescriptor(),(void *)nameFile.c_str(),sizeof(nameFile.c_str()),0);
                     sleep(5);
                     Server::sendFile((void *)Server::clientsDescriptors.at(index),file.c_str());
                     cout<<"hol2";

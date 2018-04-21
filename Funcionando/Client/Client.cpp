@@ -102,7 +102,18 @@ void * Client::writeServer(void* clientInput)
         client->setIsStorageMachine(true);
         i = send(client->getDescriptor(), (void *) "2", sizeof("2"), 0);
         recv(client->getDescriptor(), (void *) serversMessage, sizeof(serversMessage), 0);
+        system("clear");
         cout<<serversMessage<<endl;
+        cout<<"Seleccione un tipo de maquina: "<<endl;
+        cout<<"1. Acceder como Imagenes"<<endl;
+        cout<<"2. Acceder como Video"<<endl;
+        cin>>option2;
+        if(option2==1){
+            i = send(client->getDescriptor(), (void *) "1", sizeof("1"), 0);
+        }else{
+            i = send(client->getDescriptor(), (void *) "2", sizeof("2"), 0);
+        }
+
         while(conected)
         {
             while(red){
@@ -139,7 +150,8 @@ void * Client::writeServer(void* clientInput)
 
 
                     string file ="/root/Escritorio/Client/Data/";
-                    file+=name;
+                    recv(client->getDescriptor(), (void *) serversMessage, sizeof(serversMessage), 0);
+                    file+=serversMessage;
                     cout<<file<<endl;
                     Client::receiveFile((void *)client,file.c_str());
                     cout<<"YA"<<endl;
