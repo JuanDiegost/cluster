@@ -39,7 +39,7 @@ void Client::connectServer()
 //en este menu es donde se hace el menu de acciones y se envian los mensajes con lo que sea que el cliente haya escrito
 void * Client::writeServer(void* clientInput)
 {
-    string name="1.png";
+    int name=123;
     Client* client = (Client *) clientInput;
     int conected = 1;
     cout<<"Seleccione una opcion:"<<endl;
@@ -80,7 +80,7 @@ void * Client::writeServer(void* clientInput)
                     i = send(client->getDescriptor(), (void *) file.c_str(), sizeof(file), 0);
                     string path="/root/Escritorio/Client/";
                     path+=file;
-                    sleep(1);
+                    sleep(5);
                     Client::sendFile((void *)client,path.c_str());
                 }
                 else
@@ -150,8 +150,8 @@ void * Client::writeServer(void* clientInput)
 
 
                     string file ="/root/Escritorio/Client/Data/";
-                    recv(client->getDescriptor(), (void *) serversMessage, sizeof(serversMessage), 0);
-                    file+=serversMessage;
+                    name++;
+                    file+=std::to_string(name) +".png";
                     cout<<file<<endl;
                     Client::receiveFile((void *)client,file.c_str());
                     cout<<"YA"<<endl;

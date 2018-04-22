@@ -40,13 +40,13 @@ void * receiveClient(void* infoClient){
     bool red=false;
     while(client->getState()){
         while(red){
-            sleep(50);
+            sleep(20);
         }
         int i= recv(client->getClientDescriptor(),(void *)&clientMessage,128,0);
         red=true;
         if(i!=0){
             cout <<"El cliente con IP" <<inet_ntoa(client->getClientInfo().sin_addr) <<" envió:" << clientMessage<<endl;
-
+            if(((unsigned)strlen(clientMessage))==1){
             option = atoi(clientMessage);
             switch (option){
             case 1:
@@ -68,12 +68,10 @@ void * receiveClient(void* infoClient){
                 red=false;
             break;
             case 3:{
-                string nameFile;
                     cout<<"sending... ";
                     i= recv(client->getClientDescriptor(),(void *)&clientMessage,128,0);
                     string file ="/root/Escritorio/Server/data/";
                     file+=clientMessage;
-                    nameFile=clientMessage;
                     cout<<file<<endl;
                     Server::receiveFile((void *)infoClient,file.c_str());
                     cout<<"Numero de maquinas"<<Server::clientsDescriptors.size()<<endl;
@@ -99,7 +97,6 @@ void * receiveClient(void* infoClient){
                         }
                     }
 
-                    cout<<"salio del for";
                     int lowest = sizes.at(0);
                     int index = 0;
                     for(int k = 1; k< sizes.size(); k++){
@@ -110,12 +107,12 @@ void * receiveClient(void* infoClient){
                     }
                     cout<<"hol1"<<lowest<<"salio"<<endl;
                     send(Server::clientsDescriptors.at(index)->getClientDescriptor(),(void *)"5",sizeof("5"),0);
-                    send(Server::clientsDescriptors.at(index)->getClientDescriptor(),(void *)nameFile.c_str(),sizeof(nameFile.c_str()),0);
                     sleep(5);
                     Server::sendFile((void *)Server::clientsDescriptors.at(index),file.c_str());
-                    cout<<"hol2";
                     sleep(5);
+                    remove (file.c_str());
                     red=false;
+                    cout<<"Archivo guardado"<<endl;
                 break;
             }
             case 4://conectar como cliente
@@ -124,7 +121,7 @@ void * receiveClient(void* infoClient){
                 red=false;
                 break;
             }
-
+            }
         }else{
             cout<<"Se desconectó el cliente con IP:"<<inet_ntoa(client->getClientInfo().sin_addr) << " con error" <<endl;
             client->setState(false);
