@@ -1,0 +1,273 @@
+# depslib dependency file v1.0
+1514140574 source:c:\users\srfeu\onedrive\semestre 7\distribuidos\servernew\main.cpp
+	<iostream>
+
+1523761737 
+
+1524131214 source:/home/srfeudal/Documentos/Cluster/Server/ClientInfo.cpp
+	"ClientInfo.h"
+	"ClientInfo.h"
+	"ClientInfo.h"
+
+1524175885 o.h"
+
+1524131214 /home/srfeudal/Documentos/Cluster/Server/ClientInfo.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<string.h>
+
+1524173947 source:/home/srfeudal/Documentos/Cluster/Server/main.cpp
+	<iostream>
+	"Server.h"
+	<iostream>
+	"Server.h"
+	<iostream>
+	"Server.h"
+
+1524175885 /home/srfeudal/Documentos/Cluster/Server/Server.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	"ClientInfo.h"
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<string.h>
+	<fstream>
+	"ClientInfo.h"
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<string.h>
+	<fstream>
+	"ClientInfo.h"
+
+1523998337 source:/home/srfeudal/Documentos/Cluster/Server/Server.cpp
+	"Server.h"
+	"Server.h"
+
+1523761737 source:c:\users\juandiegost\documents\distribuidos\cluster o\cluster\cluster\server\clientinfo.cpp
+	"ClientInfo.h"
+
+1523761737 c:\users\juandiegost\documents\distribuidos\cluster o\cluster\cluster\server\clientinfo.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+
+1523761737 source:c:\users\juandiegost\documents\distribuidos\cluster o\cluster\cluster\server\main.cpp
+	<iostream>
+	"Server.h"
+
+1523761737 c:\users\juandiegost\documents\distribuidos\cluster o\cluster\cluster\server\server.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	"ClientInfo.h"
+
+1523761737 source:c:\users\juandiegost\documents\distribuidos\cluster o\cluster\cluster\server\server.cpp
+	"Server.h"
+
+1524109006 source:/root/Escritorio/Cluster/Server/ClientInfo.cpp
+	"ClientInfo.h"
+	"ClientInfo.h"
+
+1524108999 /root/Escritorio/Cluster/Server/ClientInfo.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<string.h>
+
+1524097038 source:/root/Escritorio/Cluster/Server/main.cpp
+	<iostream>
+	"Server.h"
+	<iostream>
+	"Server.h"
+
+1524110799 /root/Escritorio/Cluster/Server/Server.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<string.h>
+	<fstream>
+	"ClientInfo.h"
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<string.h>
+	<fstream>
+	"ClientInfo.h"
+
+1523817702 source:/root/Escritorio/Cluster/Server/Server.cpp
+	"Server.h"
+
+1524169794 source:/root/Escritorio/Server/ClientInfo.cpp
+	"ClientInfo.h"
+
+1524169794 /root/Escritorio/Server/ClientInfo.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<string.h>
+
+1524169794 source:/root/Escritorio/Server/main.cpp
+	<iostream>
+	"Server.h"
+
+1524513423 /root/Escritorio/Server/Server.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<string.h>
+	<stdlib.h>
+	<iostream>
+	<vector>
+	<pthread.h>
+	<time.h>
+	<cstdio>
+	<string.h>
+	<fstream>
+	"ClientInfo.h"
+
