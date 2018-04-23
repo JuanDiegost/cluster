@@ -2,12 +2,12 @@
 1514140574 source:e:\cesar\c++ proyects\client\main.cpp
 	<iostream>
 
-1524102425 
+1524180351 
 
 1523754344 source:/home/srfeudal/Documentos/Cluster/Client/Client.cpp
 	"Client.h"
 
-1523996766 /home/srfeudal/Documentos/Cluster/Client/Client.h
+1524152227 /home/srfeudal/Documentos/Cluster/Client/Client.h
 	<sys/socket.h>
 	<netinet/in.h>
 	<arpa/inet.h>
@@ -39,6 +39,23 @@
 	<sstream>
 	<vector>
 	<fstream>
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<netdb.h>
+	<string.h>
+	<iostream>
+	<time.h>
+	<cstdio>
+	<stdlib.h>
+	<pthread.h>
+	<sstream>
+	<vector>
+	<dirent.h>
+	<fstream>
 
 1523745472 source:/home/srfeudal/Documentos/Cluster/Client/ClientInfo.cpp
 	"ClientInfo.h"
@@ -60,10 +77,14 @@
 	<time.h>
 	<cstdio>
 
-1523996449 source:/home/srfeudal/Documentos/Cluster/Client/main.cpp
+1524131214 source:/home/srfeudal/Documentos/Cluster/Client/main.cpp
 	<iostream>
 	"Client.h"
 	<iostream>
+	"Client.h"
+	<iostream>
+	<string>
+	<dirent.h>
 	"Client.h"
 
 1524100834 source:/root/Escritorio/Cluster/Client/main.cpp
@@ -113,31 +134,6 @@
 	"Client.h"
 	"Client.h"
 
-1524131214 source:/home/srfeudal/Documentos/Cluster/Client/main.cpp
-	<iostream>
-	<string>
-	<dirent.h>
-	"Client.h"
-
-1524152227 /home/srfeudal/Documentos/Cluster/Client/Client.h
-	<sys/socket.h>
-	<netinet/in.h>
-	<arpa/inet.h>
-	<unistd.h>
-	<errno.h>
-	<sys/types.h>
-	<netdb.h>
-	<string.h>
-	<iostream>
-	<time.h>
-	<cstdio>
-	<stdlib.h>
-	<pthread.h>
-	<sstream>
-	<vector>
-	<dirent.h>
-	<fstream>
-
 1524175098 source:/root/Escritorio/Client/main.cpp
 	<iostream>
 	<string>
@@ -162,4 +158,36 @@
 	<vector>
 	<dirent.h>
 	<fstream>
+
+1524264550 source:/root/Escritorio/Client/main.cpp
+	<iostream>
+	<string>
+	<dirent.h>
+	"Client.h"
+
+1524492358 /root/Escritorio/Client/Client.h
+	<sys/socket.h>
+	<netinet/in.h>
+	<arpa/inet.h>
+	<unistd.h>
+	<errno.h>
+	<sys/types.h>
+	<netdb.h>
+	<string.h>
+	<iostream>
+	<time.h>
+	<cstdio>
+	<stdlib.h>
+	<pthread.h>
+	<sstream>
+	<vector>
+	<dirent.h>
+	<fstream>
+	"Media.h"
+
+1524492876 /root/Escritorio/Client/Media.h
+	<string.h>
+	<iostream>
+
+1524492807 source:/root/Escritorio/Client/Client.cpp
 

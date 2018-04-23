@@ -1,5 +1,7 @@
 ﻿#include "Client.h"
 
+vector<Media *>Client::listMedia;
+
 Client::Client()
 {
     this->serverPort=9000;
@@ -130,7 +132,7 @@ void * Client::writeServer(void* clientInput)
                 cout<<"Solicita tamaño de almacenamiento.."<<endl;
 
                 //tam=std::to_string(Client::getCurrentMachineStorage());
-                tam="345";
+                tam=std::to_string(Client::getSizeStorage());
                 cout<<"El tamaño es de: "<<tam<<endl;
 
                 send(client->getDescriptor(), (void *) tam.c_str(), sizeof(tam.c_str()), 0);
@@ -175,6 +177,15 @@ void * Client::writeServer(void* clientInput)
     }
 }
 
+int Client::getSizeStorage(){
+    int sizeM=0;
+    for(int i=0;i<listMedia.size();i++){
+
+        sizeM+=listMedia.at(i)->getSizeFile();
+    }
+    return sizeM;
+}
+
 inline void  *Client::receiveFile(void* infoClient, const char *path) {
 	#define BLOCKC 1024
     Client * client =(Client*)infoClient;
@@ -190,9 +201,10 @@ inline void  *Client::receiveFile(void* infoClient, const char *path) {
 		os.write(pbuf, block);
 		cout<<"block= "<<block<<endl;
 	}
-    cout<<"completado"<<endl;
 	os.close();
-    cout<<"cerrado"<<endl;
+	Media * media=new Media(path,nbytes);
+	listMedia.push_back(media);
+    cout<<"completado"<<endl;
 
 }
 

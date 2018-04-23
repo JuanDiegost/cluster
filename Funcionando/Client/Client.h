@@ -18,6 +18,8 @@
 #include <dirent.h>
 #include <fstream>
 
+#include "Media.h"
+
 using namespace std;
 
 class Client
@@ -44,6 +46,8 @@ class Client
         static inline void *receiveFile(void* infoClient, const char *path);
         static int getFileSize(std::string);
         static int getCurrentMachineStorage();
+        static int getSizeStorage();
+        static vector<Media *> listMedia;
 
     private:
         //atributos:
