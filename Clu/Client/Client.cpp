@@ -54,6 +54,7 @@ void * Client::writeServer(void* clientInput)
     bool red=false;
     int option2;
     int i;
+    int veces=0;
     cin>>option;
     fflush(stdin);
     switch (option)
@@ -89,14 +90,22 @@ void * Client::writeServer(void* clientInput)
                 {
                     cout<<"No se pueden enviar los datos en el momento";
                 }
+                red=false;
                 break;
             case 2:{ //Solicita lista de almacenamiento
                 char serversMessage2[10240];
-                cout << "solicita lista de almacenamiento";
+                cout << "solicita lista de almacenamiento"<<endl;
                 send(client->getDescriptor(), (void *) "5", sizeof("5"), 0);
                 sleep(1);
-                recv(client->getDescriptor(), (void *) &serversMessage2, sizeof(serversMessage2), 0);
-                cout << serversMessage2<<endl;
+                string r="1";
+                while(r!="6"){
+                    recv(client->getDescriptor(), (void *) &serversMessage2, sizeof(serversMessage2), 0);
+                    r=string(serversMessage2);
+                    if(r!="6"){
+                    cout << r<<endl;
+                    }
+                    }
+                red=false;
                 break;
                 }
             }
@@ -140,7 +149,12 @@ void * Client::writeServer(void* clientInput)
                 cout<<"El tamaño es de: "<<tam<<endl;
 
                 send(client->getDescriptor(), (void *) tam.c_str(), sizeof(tam), 0);
-                send(client->getDescriptor(), (void *) tam.c_str(), sizeof(tam), 0);
+                sleep(1);
+                if(veces==0){
+                    send(client->getDescriptor(), (void *) tam.c_str(), sizeof(tam), 0);
+                    veces;
+                }
+
 
                 //send(client->getDescriptor(), (void *) "0", sizeof("0"), 0);
                 //send(client->getDescriptor(), (void *) "0", sizeof("0"), 0);
@@ -149,10 +163,8 @@ void * Client::writeServer(void* clientInput)
             }
             case 4:{//El servidor solicita lista de archivos
 
-                string listN=Client::getListMedia();
-                cout << "Tamano: "<<listN.size()<<endl;
-                cout << "Lista: "<<listN.c_str();
-                send(client->getDescriptor(), (void *) listN.c_str(), listN.size(), 0);
+                Client::getListMedia(clientInput);
+                sleep(5);
                 red=false;
                 break;
                 }
@@ -188,11 +200,19 @@ void * Client::writeServer(void* clientInput)
     }
 }
 
-string Client::getListMedia(){
+string Client::getListMedia(void * clientInput){
+    Client* client = (Client *) clientInput;
     string result="";
     for(int i=0;i<Client::listMedia.size();i++){
-        result += Client::listMedia.at(i)->toString()+ "\n" ;
+        result = Client::listMedia.at(i)->toString();
+        cout<<result<<endl;
+        sleep(1);
+        send(client->getDescriptor(), (void *) result.c_str(), 10240, 0);
     }
+    sleep(1);
+    send(client->getDescriptor(), (void *) "6", 10240, 0);
+    cout<<"Lista enviada"<<endl;
+    sleep(1);
     return result;
 }
 
@@ -220,9 +240,8 @@ inline void  *Client::receiveFile(void* infoClient, const char *path) {
 		cout<<"block= "<<block<<endl;
 	}
 	os.close();
-
 	Media * media=new Media(path,nbytes);
-	listMedia.push_back(media);
+	Client::listMedia.push_back(media);
     cout<<"completado"<<endl;
 
 }

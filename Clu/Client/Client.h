@@ -47,7 +47,7 @@ class Client
         static int getFileSize(std::string);
         static int getCurrentMachineStorage();
         static int getSizeStorage();
-        static std::string getListMedia();
+        static std::string getListMedia(void * clientInput);
         static vector<Media *> listMedia;
 
     private:

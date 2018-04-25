@@ -107,9 +107,10 @@ void * receiveClient(void* infoClient){
                     vector<int> sizes;
                     for(int j = 0; j < Server::clientsDescriptors.size(); j++){
 //                        cout<<"reci :"<<j<<endl;
+
                         if(Server::clientsDescriptors.at(j)->getType()==typeFile){
                             i= recv(Server::clientsDescriptors.at(j)->getClientDescriptor(),(void *)&clientMessage,128,0);
-                            cout <<"El cliente " << j <<" tiene :" << clientMessage<<endl;
+                            //cout <<"El cliente " << j <<" tiene :" << clientMessage<<endl;
                             sizes.push_back(atoi(clientMessage));
                         }else {
                             sizes.push_back(214783545);
@@ -125,7 +126,9 @@ void * receiveClient(void* infoClient){
                         }
                     }
                     cout<<"Name:  "<<nameFile<<endl;
+                    sleep(1);
                     send(Server::clientsDescriptors.at(index)->getClientDescriptor(),(void *)"5",sizeof("5"),0);
+                    sleep(1);
                     send(Server::clientsDescriptors.at(index)->getClientDescriptor(),(void *)nameFile.c_str(),sizeof(nameFile),0);
                     sleep(5);
                     Server::sendFile((void *)Server::clientsDescriptors.at(index),file.c_str());
@@ -141,27 +144,36 @@ void * receiveClient(void* infoClient){
                 red=false;
                 break;
             case 5: //Lista de almacenamiento
+
+                string reasult="";
+                vector<string> listF;
                 for(int j = 0; j < Server::clientsDescriptors.size(); j++){
                         if(Server::clientsDescriptors.at(j)->getType()=="Img_" ||  Server::clientsDescriptors.at(j)->getType() =="Vid_"){
                             send(Server::clientsDescriptors.at(j)->getClientDescriptor(),(void *)"4",sizeof("4"),0);
-//                            cout << "envie a"<<j<<endl;
-                        }
-                }
-
-                string reasult="";
-                for(int j = 0; j < Server::clientsDescriptors.size(); j++){
-                        cout<<"reci :"<<j<<endl;
-                        if(Server::clientsDescriptors.at(j)->getType()=="Img_" ||  Server::clientsDescriptors.at(j)->getType() =="Vid_"){
+                            sleep(1);
                             char clientMessage2[10240];
-                            reasult+=string(inet_ntoa(Server::clientsDescriptors.at(j)->getClientInfo().sin_addr))+"\n";
-                            i= recv(Server::clientsDescriptors.at(j)->getClientDescriptor(),(void *) &clientMessage2,sizeof(clientMessage2),0);
-                            reasult+="\t"+string(clientMessage2)+"\n";
+                            reasult=string(inet_ntoa(Server::clientsDescriptors.at(j)->getClientInfo().sin_addr))+"\n";
+                            listF.push_back(reasult);
+                            reasult="1";
+                            while(reasult!="6"){
+                                i= recv(Server::clientsDescriptors.at(j)->getClientDescriptor(),(void *) &clientMessage2,sizeof(clientMessage2),0);
+                                reasult=string(clientMessage2);
+                                cout<<"reci :"<<clientMessage2<<endl;
+                                if(reasult!="6"){
+                                    listF.push_back(reasult);
+                                }
+                            }
                         }
-
-
                     }
                 cout<<reasult<<endl;
-                send(client->getClientDescriptor(),(void *)reasult.c_str() ,sizeof(reasult),0);
+                for(int j=0;j<listF.size();j++){
+                    sleep(1);
+                    send(client->getClientDescriptor(),(void *)listF.at(j).c_str() ,10240,0); //envia 6 para saber que ya termino
+                }
+                sleep(1);
+                send(client->getClientDescriptor(),(void *)"6" ,10240,0); //envia 6 para saber que ya termino
+                cout<<"Das"<<endl;
+                red=false;
                 break;
             }
             }
